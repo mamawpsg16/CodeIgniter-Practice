@@ -15,5 +15,8 @@ $route['users'] = 'UserController/Index';
 // $route['user-profile/(:any)'] = 'UserController/Show/$1';
 
 // ONLY NUMBERS 
-$route['user/profile/(:num)'] = 'UserController/Show/$1';
+$route['user/(:num)'] = 'UserController/show/$1';
+$route['user/edit/(:num)'] = 'UserController/edit/$1';
+$route['user/delete/(:num)'] = 'UserController/destroy/$1';
 $route['user/create'] = 'UserController/create';
+$route['user/store'] = 'UserController/store';

@@ -1,22 +1,26 @@
 <?php 
 class User extends  CI_Model{
-    public $class_name;
 
-    // public function __construct($class_name){
-    //     $this->class_name = $class_name;
-    // }
-    
-    public function getData($class){
-        return 'Student Name: '. 'Kevin Mensah'.' Class: '. $class;
+    public function getUsers(){
+        $query = $this->db->get('users');  
+        return $query->result();
     }
 
     public function findStudent($id){
-        if($id == 1){
-            return 'Student : Kevin Mensah';
-        }else{
-            return 'Student : Kenneth Mensah';
-        }
+       $query = $this->db->get_where('users', array('id' => $id));
+       return $query->row();
+    }
+
+    public function createStudent($data){
+        return $this->db->insert('users',$data);
+    }
+
+    public function updateStudent($data){
+        return $this->db->update('users',$data);
+    }
+
+    public function deleteStudent($id){
+        return $this->db->delete('users', array('id' => $id));
     }
     
 }
-?>
