@@ -20,3 +20,4 @@ $route['user/edit/(:num)'] = 'UserController/edit/$1';
 $route['user/delete/(:num)'] = 'UserController/destroy/$1';
 $route['user/create'] = 'UserController/create';
 $route['user/store'] = 'UserController/store';
+$route['user/update/(:num)'] = 'UserController/update/$1';
