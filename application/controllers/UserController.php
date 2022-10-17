@@ -4,18 +4,23 @@ class UserController extends CI_Controller
 {
     public function index()
     {
+        // $this->load->library(['Smartyci' => 'sm']);
+
+        
         $this->load->model('User');
         $users = $this->User->getUsers();
         $this->load->view('layout/delete-modal');
         $this->load->view('layout/header');
-        $this->load->view('user/index',['users' => $users]);
+        $this->sm->assign('users', $users);
+        // $this->load->view('user/index',['users' => $users]);
+        $this->sm->display('user/index.tpl');
         $this->load->view('layout/footer');
     }
 
     public function create()
     {
         $this->load->view('layout/header');
-        $this->load->view('user/create');
+        $this->sm->display('user/create.tpl');
         $this->load->view('layout/footer');
     }
     
@@ -27,13 +32,17 @@ class UserController extends CI_Controller
         $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|min_length[11]|trim');
         $this->form_validation->set_rules('address', 'Address', 'required|trim');
 
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
         if ($this->form_validation->run() != FALSE) {
+            print_r('SAVED');
             $data = $this->input->post(array('first_name', 'last_name', 'email', 'address', 'phone_number'));
             $this->load->model('User');
             $this->User->createStudent($data);
             $this->session->set_flashdata('store', 'User added successfully!');
             redirect(base_url(('users')));
         }else{
+            print_r('error');
             $this->create();
         }
     }
@@ -53,7 +62,9 @@ class UserController extends CI_Controller
         $this->load->model('User');
         $user = $this->User->findStudent($id);
         $this->load->view('layout/header');
-        $this->load->view('user/edit', ['user' => $user]);
+        // $this->load->view('user/edit', ['user' => $user]);
+        $this->sm->assign('user', $user);
+        $this->sm->display('user/edit.tpl');
         $this->load->view('layout/footer');
     }
 
@@ -65,19 +76,20 @@ class UserController extends CI_Controller
         $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|min_length[11]|trim');
         $this->form_validation->set_rules('address', 'Address', 'required|trim');
         $data = $this->input->post(array('first_name', 'last_name', 'email', 'address', 'phone_number'));
+
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
         
         $this->load->model('User');
         // $email_unique = $this->User->checkEmail($this->input->post('email'),$id);
         
         if ($this->form_validation->run() != FALSE) {
-            echo 'SHIT';
             $data = $this->input->post(array('first_name', 'last_name', 'email', 'address', 'phone_number'));
             $this->User->updateStudent($data,$id);
             $this->session->set_flashdata('update', 'User updated successfully!');
-            $this->edit($id);
+            $this->index();
         }
         else{
-            // echo 'SHIT';
             $this->edit($id);
         }
     }
@@ -94,7 +106,7 @@ class UserController extends CI_Controller
     }
 
     function unique_email($email,$id){
-        $this->db->select('id,email,first_name');
+        $this->db->select('id,email');
         $this->db->from('users');
         $this->db->where('email',$email);
         $this->db->where('id !=',$id);
@@ -103,7 +115,6 @@ class UserController extends CI_Controller
         if($result->row()){
             $this->form_validation->set_message('unique_email', 'The email is already taken!');
             return false;
-    
         }
         return true;
     }

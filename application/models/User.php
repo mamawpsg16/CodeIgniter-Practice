@@ -2,6 +2,7 @@
 class User extends  CI_Model{
 
     public function getUsers(){
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get('users');  
         return $query->result();
     }

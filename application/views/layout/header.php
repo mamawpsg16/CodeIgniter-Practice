@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
-
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+        #users-table_filter{
+            display: none;
+        }
+    </style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

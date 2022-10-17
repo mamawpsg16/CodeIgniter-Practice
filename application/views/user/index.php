@@ -28,7 +28,7 @@
                             <?php foreach ($users as $user) { ?>
                                 <tr>
                                     <td><?php echo $counter++; ?></td>
-                                    <td><?php echo $user->first_name . '' . $user->last_name; ?></td>
+                                    <td><?php echo $user->first_name . ', ' . $user->last_name; ?></td>
                                     <td><?php echo $user->email; ?></td>
                                     <td><?php echo $user->phone_number; ?></td>
                                     <td><?php echo $user->address; ?></td>

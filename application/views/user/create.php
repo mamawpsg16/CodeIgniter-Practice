@@ -8,32 +8,32 @@
                 <div class="form-group">
                     <label for="">First Name</label>
                     <input type="text" name="first_name" class="form-control" value="<?php echo set_value('first_name'); ?>" id="first_name">
-                    <p class="text-danger"><?php echo form_error('first_name','<span class="text-danger"></span>'); ?></p>
+                    <?php echo form_error('first_name'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label for="">Last Name</label>
                     <input type="text" name="last_name" class="form-control" value="<?php echo set_value('last_name'); ?>" id="last_name">
-                    <p class="text-danger"><?php echo form_error('last_name','<span class="text-danger"></span>'); ?></p>
+                    <?php echo form_error('last_name'); ?>
                 </div>
                 
                 
                 <div class="form-group">
                     <label for="">Email </label>
                     <input type="email" name="email" class="form-control" value="<?php echo set_value('email'); ?>" id="email">
-                    <p class="text-danger"><?php echo form_error('email','<span class="text-danger"></span>'); ?></p>
+                    <?php echo form_error('email'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label for="">Phone Number</label>
                     <input type="text" name="phone_number" class="form-control" value="<?php echo set_value('phone_number'); ?>" id="phone_number">
-                    <p class="text-danger"><?php echo form_error('phone_number','<span class="text-danger"></span>'); ?></p>
+                    <?php echo form_error('phone_number'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label for="">Address</label>
                     <input type="text" name="address" class="form-control" value="<?php echo set_value('address'); ?>" id="address">
-                    <p class="text-danger"><?php echo form_error('address','<span class="text-danger"></span>'); ?></p>
+                    <?php echo form_error('address'); ?>
 
                 </div>
 

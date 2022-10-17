@@ -13,7 +13,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary px-4" id="delete-confirmation">Confirm</button>
-        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" id="cancel">Close</button>
+        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" id="close">Close</button>
       </div>
     </div>
   </div>
