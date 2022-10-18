@@ -7,7 +7,7 @@
             {* <form action="{base_url('user/update/')}{$user->id}" method="POST"> *}
             <form action="{base_url('user/update/')}{$user->id}" method="POST" enctype="multipart/form-data">
             <div class="form-group d-flex flex-column align-items-center">
-            <img src="{base_url('assets/images/uploads/')}{{$user->image|default:"default.png"}}" alt="Profile Image"  class="img-fluid rounded" width="30%">
+            <img src="{base_url('assets/images/uploads/')}{$user->image|default:"default.png"}" alt="Profile Image"  class="img-fluid rounded" width="30%">
             <label for="">Image</label>
             <input type="file" name="image"  class="form-control" size="20" />
             {* {form_error('image')} *}

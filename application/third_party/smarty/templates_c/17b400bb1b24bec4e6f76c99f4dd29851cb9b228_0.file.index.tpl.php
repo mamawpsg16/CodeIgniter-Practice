@@ -1,17 +1,45 @@
-{include file="../templates/header.tpl" title="CodeIgniterSmarty Practice"}
-<div class="container mt-5">
-    {if !empty($flash_store)}
-        {* <div class="alert alert-success">{$flash_store}</div> *}
-        {include file="../templates/swal.tpl" message="added"}
+<?php
+/* Smarty version 3.1.47, created on 2022-10-19 01:31:57
+  from 'C:\xampp\htdocs\blog-cg\application\views\user\index.tpl' */
 
-    {/if}
-    {if !empty($flash_update)}
-        {* <div class="alert alert-primary">{$flash_update}</div> *}
-        {include file="../templates/swal.tpl" message="updated"}
-    {/if}
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.47',
+  'unifunc' => 'content_634f376d806de1_79966912',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '17b400bb1b24bec4e6f76c99f4dd29851cb9b228' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\blog-cg\\application\\views\\user\\index.tpl',
+      1 => 1666085425,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../templates/header.tpl' => 1,
+    'file:../templates/swal.tpl' => 2,
+    'file:../templates/footer.tpl' => 1,
+  ),
+),false)) {
+function content_634f376d806de1_79966912 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender("file:../templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"CodeIgniterSmarty Practice"), 0, false);
+?>
+<div class="container mt-5">
+    <?php if (!empty($_smarty_tpl->tpl_vars['flash_store']->value)) {?>
+                <?php $_smarty_tpl->_subTemplateRender("file:../templates/swal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('message'=>"added"), 0, false);
+?>
+
+    <?php }?>
+    <?php if (!empty($_smarty_tpl->tpl_vars['flash_update']->value)) {?>
+                <?php $_smarty_tpl->_subTemplateRender("file:../templates/swal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('message'=>"updated"), 0, true);
+?>
+    <?php }?>
     <div class="card">
         <div class="card-header d-flex justify-content-end ">
-            <a href="{base_url('user/create')}" class="text-decoration-none btn btn-success">Add User</a>
+            <a href="<?php echo base_url('user/create');?>
+" class="text-decoration-none btn btn-success">Add User</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -27,44 +55,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {* {counter start=0}
-                        {counter} *}
-                        {strip}
-                            {if count($users) > 0}
-                                {foreach from=$users item='user'}
-                                    <tr>
-                                        <td>
-                                            {$user@iteration}
-                                        </td>
-                                        <td>
-                                            {$user->first_name}, {$user->last_name}
-                                        </td>
-                                        <td>
-                                            {$user->email}
-                                        </td>
-                                        <td>
-                                            {$user->phone_number}
-                                        </td>
-                                        <td>
-                                            {$user->address}
-                                        </td>
-                                        <td class="d-flex align-items-center">
-                                            <!-- <a href="<?php echo base_url('user/' . $user->id) ?>" class="btn btn-sm btn-secondary m-1">View</a>     -->
-                                            <a href={base_url("user/edit/{$user->id}")} class="btn btn-sm btn-primary">Edit</a>
-                                            <button class="btn btn-sm btn-danger delete-btn" value="{$user->id}">Delete</ />
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            {/if}
-                        {/strip}
+                                                <?php if (count($_smarty_tpl->tpl_vars['users']->value) > 0) {
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['users']->value, 'user');
+$_smarty_tpl->tpl_vars['user']->iteration = 0;
+$_smarty_tpl->tpl_vars['user']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['user']->value) {
+$_smarty_tpl->tpl_vars['user']->do_else = false;
+$_smarty_tpl->tpl_vars['user']->iteration++;
+$__foreach_user_0_saved = $_smarty_tpl->tpl_vars['user'];
+?><tr><td><?php echo $_smarty_tpl->tpl_vars['user']->iteration;?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->first_name;?>
+, <?php echo $_smarty_tpl->tpl_vars['user']->value->last_name;?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->email;?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->phone_number;?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->address;?>
+</td><td class="d-flex align-items-center"><!-- <a href="<?php echo '<?php ';?>
+echo base_url('user/' . $user->id) <?php echo '?>';?>
+" class="btn btn-sm btn-secondary m-1">View</a>     --><a href=<?php echo base_url("user/edit/".((string)$_smarty_tpl->tpl_vars['user']->value->id));?>
+ class="btn btn-sm btn-primary">Edit</a><button class="btn btn-sm btn-danger delete-btn" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
+">Delete</ /></td></tr><?php
+$_smarty_tpl->tpl_vars['user'] = $__foreach_user_0_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
+}?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-{include file="../templates/footer.tpl"}
-<script type="text/javascript">
+<?php $_smarty_tpl->_subTemplateRender("file:../templates/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+echo '<script'; ?>
+ type="text/javascript">
     $(document).ready(function() {
         $('#users-table').DataTable();
 
@@ -134,4 +156,6 @@
         })
 
     }))
-</script>
+<?php echo '</script'; ?>
+><?php }
+}
