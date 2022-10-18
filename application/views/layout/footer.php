@@ -56,6 +56,8 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
+                        // $('#users-table').DataTable().destroy();
+                        // $('#users-table').DataTable();
                         Swal.fire(
                             'Deleted!',
                             'User successfully deleted.',

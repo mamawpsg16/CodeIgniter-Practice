@@ -4,7 +4,14 @@
             <a href="{base_url('users')} " class="text-decoration-none btn btn-secondary">Back</a>
         </div>
         <div class="card-body">
-            <form action="{base_url('user/update/')}{$user->id}" method="POST">
+            {* <form action="{base_url('user/update/')}{$user->id}" method="POST"> *}
+            <form action="{base_url('user/update/')}{$user->id}" method="POST" enctype="multipart/form-data">
+            <div class="form-group d-flex flex-column align-items-center">
+            <img src="{base_url('assets/images/uploads/')}{{$user->image|default:"default.png"}}" alt="Profile Image"  class="img-fluid rounded" width="30%">
+            <label for="">Image</label>
+            <input type="file" name="image"  class="form-control" size="20" />
+            {* {form_error('image')} *}
+        </div>
                 <div class="form-group">
                     <label for="">First Name</label>
                     <input type="text" name="first_name" class="form-control" value="{$user->first_name}" id="first_name">
@@ -32,7 +39,7 @@
                 
                 <div class="form-group">
                     <label for="">Address</label>
-                    <textarea name="address" id="address" class="form-control" rows="10" >{$user->address}</textarea>
+                    <textarea name="address"  class="form-control" rows="5" >{$user->address}</textarea>
                     {form_error('address')}
                 </div>
 

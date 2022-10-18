@@ -13,7 +13,8 @@ class User extends  CI_Model{
     }
 
     public function createStudent($data){
-        return $this->db->insert('users',$data);
+        $this->db->insert('users',$data);
+        return $this->db->insert_id();
     }
 
     public function updateStudent($data,$id){
