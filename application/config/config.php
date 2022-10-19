@@ -131,7 +131,7 @@ $config['subclass_prefix'] = 'MY_';
 | Or if you have your vendor/ directory located somewhere else, you
 | can opt to set a specific path as well:
 |
-|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|	
 |
 | For more information about Composer, please visit http://getcomposer.org/
 |
@@ -139,6 +139,7 @@ $config['subclass_prefix'] = 'MY_';
 |	autoloading (application/config/autoload.php)
 */
 $config['composer_autoload'] = TRUE;
+$config['composer_autoload'] = 'vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------

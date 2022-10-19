@@ -11,6 +11,7 @@
     {/if}
     <div class="card">
         <div class="card-header d-flex justify-content-end ">
+            <a href="{base_url('user/exportPDF')}"  target="_blank" class="text-decoration-none btn btn-secondary mr-2">Export PDF</a>
             <a href="{base_url('user/create')}" class="text-decoration-none btn btn-success">Add User</a>
         </div>
         <div class="card-body">
@@ -48,9 +49,9 @@
                                         <td>
                                             {$user->address}
                                         </td>
-                                        <td class="d-flex align-items-center">
+                                        <td class="d-flex align-items-center justify-content-center">
                                             <!-- <a href="<?php echo base_url('user/' . $user->id) ?>" class="btn btn-sm btn-secondary m-1">View</a>     -->
-                                            <a href={base_url("user/edit/{$user->id}")} class="btn btn-sm btn-primary">Edit</a>
+                                            <a href={base_url("user/edit/{$user->id}")} class="btn btn-sm btn-primary mr-2">Edit</a>
                                             <button class="btn btn-sm btn-danger delete-btn" value="{$user->id}">Delete</ />
                                         </td>
                                     </tr>
@@ -116,8 +117,6 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
-                        // $('#users-table').DataTable().destroy();
-                        // $('#users-table').DataTable();
                         Swal.fire({
                             title: 'User successfully deleted',
                             width: 420,

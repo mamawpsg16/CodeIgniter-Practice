@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.47, created on 2022-10-19 01:31:57
-  from 'C:\xampp\htdocs\blog-cg\application\views\user\index.tpl' */
+/* Smarty version 4.2.1, created on 2022-10-19 09:15:27
+  from 'C:\wamp64\www\blog-cg\application\views\user\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.47',
-  'unifunc' => 'content_634f376d806de1_79966912',
+  'version' => '4.2.1',
+  'unifunc' => 'content_634fc02fdbbea2_89241027',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '17b400bb1b24bec4e6f76c99f4dd29851cb9b228' => 
+    '00c07eede125037625ef7933cf61bb8946ae6caf' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\blog-cg\\application\\views\\user\\index.tpl',
-      1 => 1666085425,
+      0 => 'C:\\wamp64\\www\\blog-cg\\application\\views\\user\\index.tpl',
+      1 => 1666170663,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_634f376d806de1_79966912 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634fc02fdbbea2_89241027 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:../templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"CodeIgniterSmarty Practice"), 0, false);
 ?>
 <div class="container mt-5">
@@ -38,6 +38,8 @@ $_smarty_tpl->_subTemplateRender("file:../templates/header.tpl", $_smarty_tpl->c
     <?php }?>
     <div class="card">
         <div class="card-header d-flex justify-content-end ">
+            <a href="<?php echo base_url('user/exportPDF');?>
+"  target="_blank" class="text-decoration-none btn btn-secondary mr-2">Export PDF</a>
             <a href="<?php echo base_url('user/create');?>
 " class="text-decoration-none btn btn-success">Add User</a>
         </div>
@@ -69,10 +71,10 @@ $__foreach_user_0_saved = $_smarty_tpl->tpl_vars['user'];
 </td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->email;?>
 </td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->phone_number;?>
 </td><td><?php echo $_smarty_tpl->tpl_vars['user']->value->address;?>
-</td><td class="d-flex align-items-center"><!-- <a href="<?php echo '<?php ';?>
-echo base_url('user/' . $user->id) <?php echo '?>';?>
+</td><td class="d-flex align-items-center justify-content-center"><!-- <a href="<?php echo '<?php'; ?>
+ echo base_url('user/' . $user->id) <?php echo '?>'; ?>
 " class="btn btn-sm btn-secondary m-1">View</a>     --><a href=<?php echo base_url("user/edit/".((string)$_smarty_tpl->tpl_vars['user']->value->id));?>
- class="btn btn-sm btn-primary">Edit</a><button class="btn btn-sm btn-danger delete-btn" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
+ class="btn btn-sm btn-primary mr-2">Edit</a><button class="btn btn-sm btn-danger delete-btn" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
 ">Delete</ /></td></tr><?php
 $_smarty_tpl->tpl_vars['user'] = $__foreach_user_0_saved;
 }
@@ -138,8 +140,6 @@ echo '<script'; ?>
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
-                        // $('#users-table').DataTable().destroy();
-                        // $('#users-table').DataTable();
                         Swal.fire({
                             title: 'User successfully deleted',
                             width: 420,

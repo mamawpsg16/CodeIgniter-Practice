@@ -8,6 +8,9 @@
         #users-table_filter{
             display: none;
         }
+        body{
+            background-color: red;
+        }
     </style>
 <head>
     <meta charset="utf-8">

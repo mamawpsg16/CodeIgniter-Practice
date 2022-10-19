@@ -1,13 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+use Dompdf\Dompdf;
 class UserController extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('User');
+    }
+    
     public function index()
     {
         // $this->load->library(['Smartyci' => 'sm']);
 
 
-        $this->load->model('User');
         $data['users'] = $this->User->getUsers();
         // $this->load->view('layout/delete-modal');
         // $this->load->view('layout/header');
@@ -30,7 +36,6 @@ class UserController extends CI_Controller
 
     public function store()
     {
-        $this->load->model('User');
         $config['upload_path']          = 'assets/images/uploads';
         $config['allowed_types']        = 'jpg|png';
         $config['file_name']            = uniqid().time();
@@ -61,7 +66,6 @@ class UserController extends CI_Controller
 
     public function show($id)
     {
-        $this->load->model('User');
         $user = $this->User->findStudent($id);
 
         $this->load->view('layout/header');
@@ -71,7 +75,6 @@ class UserController extends CI_Controller
 
     public function edit($id)
     {
-        $this->load->model('User');
         $user = $this->User->findStudent($id);
         $this->load->view('layout/header');
         // $this->load->view('user/edit', ['user' => $user]);
@@ -96,7 +99,7 @@ class UserController extends CI_Controller
         $config['file_name']            = uniqid().time();
         $this->load->library('upload', $config);
 
-        $this->load->model('User');
+        
         // $email_unique = $this->User->checkEmail($this->input->post('email'),$id);
 
         if ($this->form_validation->run() != FALSE) {
@@ -115,13 +118,66 @@ class UserController extends CI_Controller
 
     public function destroy($id)
     {
-        $this->load->model('User');
+        
         $user = $this->User->deleteStudent($id);
         if ($user) {
             $this->session->set_flashdata('destroy', 'User deleted successfully!');
             $this->index();
         }
         // return $user;
+    }
+
+    // public function exportPdf(){
+    //     // die('user/exportPdf');
+    //     $pdf = new FPDF();
+    //     $pdf->AddPage(['L','A4']);
+    //     $pdf->SetFont('Arial','B',16);
+    //     $pdf->Image('assets/images/uploads/default.png',10,10,40);
+    //     // $pdf->Cell(195,10,'Users',1,0,'C');
+    //     $pdf->Ln(25);
+    //     $pdf->Cell(270,10,'Users',0,0,'C');
+    //     $pdf->Ln(20);
+    //     $pdf->SetX(20);
+    //     $pdf->Cell(70,10,'Name',1);
+    //     $pdf->Cell(70,10,'Email',1);
+    //     $pdf->Cell(45,10,'Phone Number',1);
+    //     $pdf->Cell(70,10,'Address',1);
+    //     $pdf->Ln();
+    //     $this->load->model('User');
+    //     $users = $this->User->getPdfUserDetails();
+    //     // Data
+    //     foreach($users as $key => $value)
+    //     {
+    //         $pdf->SetX(20);
+    //         foreach($value as $key => $col)
+    //         { 
+    //             if($key != 'id' && $key != 'image' && $key != 'first_name' && $key != 'phone_number'){
+    //                 $pdf->Cell(70,10,$col,1);
+    //             }
+                    
+    //             if($key == 'phone_number'){
+    //                 $pdf->Cell(45,10,$col,1);
+    //             }
+    //         }
+            
+    //         $pdf->Ln();
+
+    //     }
+    //     $pdf->Output();
+    //     // Line break
+    // }
+
+    public function exportPDF(){
+        $dompdf = new Dompdf();
+        $users = $this->User->getUsers();
+        // die(print_r($users));
+        // $html = '<link type="text/css" href="/assets/css/style.css" rel="stylesheet" />';
+        $html= $this->load->view('pdf/user-pdf',array('users'=>$users),true);
+        $dompdf->set_option('isRemoteEnabled',true);
+        $dompdf->setPaper('A4','Landscape');
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream('my.pdf',array('Attachment'=> 0));
     }
 
     function unique_email($email, $id)
@@ -148,24 +204,4 @@ class UserController extends CI_Controller
         }
         return true;
     }
-
-    // function validate_image($image){
-      
-
-    //     $this->load->library('upload', $config);
-
-    //     if ( ! $this->upload->do_upload('image'))
-    //     {
-    //             // $error = array('error' => $this->upload->display_errors());
-    //             $this->form_validation->set_message('validate', '{field} {$this->upload->display_errors()}!');
-    //             return false;
-    //     }
-    //     else
-    //     {
-    //             $data = array('upload_data' => $this->upload->data());
-    //             return true;
-
-
-    //     }
-    // }
 }

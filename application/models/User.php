@@ -7,6 +7,15 @@ class User extends  CI_Model{
         return $query->result();
     }
 
+    public function getPdfUserDetails(){
+        // $this->db->select('email, CONCAT(user_firstname, '.', user_surname) AS name',FALSE);
+        $this->db->select('CONCAT(first_name,'.', last_name) AS name, email,   phone_number, address,', FALSE);
+        // $this->db->from('users');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('users');  
+        return $query->result();
+    }
+
     public function findStudent($id){
        $query = $this->db->get_where('users', array('id' => $id));
        return $query->row();
